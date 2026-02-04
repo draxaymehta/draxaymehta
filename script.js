@@ -1,5 +1,5 @@
 /**
- * Dr. Axay Mehta - Academic Portfolio
+ * Dr. Axaykumar Mehta - Academic Portfolio
  * JavaScript for interactions and animations
  */
 
@@ -313,4 +313,5 @@ function initCounterAnimations() {
 }
 
 document.addEventListener('DOMContentLoaded', initCounterAnimations);
+
 
