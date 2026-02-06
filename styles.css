@@ -785,6 +785,38 @@ a:hover {
     margin: 3rem 0;
 }
 
+/* Research Labs */
+.labs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.lab-card {
+    background: var(--white);
+    padding: 1.5rem 2rem;
+    border-radius: 4px;
+    border: 1px solid var(--border);
+    transition: all var(--transition-medium);
+}
+
+.lab-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.08);
+    border-color: var(--accent);
+}
+
+.lab-card h4 {
+    margin-bottom: 0.5rem;
+}
+
+.lab-card p {
+    margin-bottom: 0;
+    color: var(--text-muted);
+}
+
 .contribution-list {
     list-style: none;
     max-width: 800px;
@@ -1107,6 +1139,17 @@ a:hover {
 
 .supervision-topics strong {
     color: var(--primary);
+}
+
+.supervision-lists {
+    max-width: 900px;
+    margin: 1.25rem auto 0;
+}
+
+.muted-note {
+    color: var(--text-muted);
+    font-size: 0.9375rem;
+    margin-bottom: 0.5rem;
 }
 
 /* Teaching Section */
