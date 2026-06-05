@@ -803,7 +803,6 @@ a:hover {
 }
 
 .lab-card:hover {
-    transform: translateY(-4px);
     box-shadow: 0 15px 50px rgba(0, 0, 0, 0.08);
     border-color: var(--accent);
 }
@@ -819,29 +818,47 @@ a:hover {
 
 .lab-videos {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 1.25rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.5rem;
 }
 
 .video-item {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
+    min-width: 0;
 }
 
-.video-item video {
+.video-wrap {
+    position: relative;
     width: 100%;
     aspect-ratio: 16 / 9;
-    object-fit: cover;
+    overflow: hidden;
     border-radius: 4px;
     background: var(--primary-dark);
     border: 1px solid var(--border);
+}
+
+.video-wrap video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
 }
 
 .video-caption {
     font-size: 0.8125rem;
     color: var(--text-muted);
     text-align: center;
+    line-height: 1.4;
+}
+
+@media (max-width: 600px) {
+    .lab-videos {
+        grid-template-columns: 1fr;
+    }
 }
 
 .contribution-list {
