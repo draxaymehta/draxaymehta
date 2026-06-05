@@ -1,0 +1,8 @@
+{
+  "name": "draxaymehta-portfolio",
+  "private": true,
+  "scripts": {
+    "dev": "python serve.py",
+    "start": "python serve.py"
+  }
+}
