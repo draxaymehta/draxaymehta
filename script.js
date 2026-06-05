@@ -232,20 +232,30 @@ function initVideoPlayers() {
             playBtn.setAttribute('aria-label', playing ? 'Pause' : 'Play');
         };
 
+        const seekToPercent = (percent) => {
+            if (Number.isFinite(video.duration) && video.duration > 0) {
+                video.currentTime = (percent / 100) * video.duration;
+            }
+        };
+
+        const updateSeekBar = () => {
+            if (!isSeeking && Number.isFinite(video.duration) && video.duration > 0) {
+                seekBar.value = (video.currentTime / video.duration) * 100;
+            }
+        };
+
         video.addEventListener('loadedmetadata', () => {
-            seekBar.max = video.duration || 0;
+            updateSeekBar();
             updateTimeDisplay();
         });
 
         video.addEventListener('durationchange', () => {
-            seekBar.max = video.duration || 0;
+            updateSeekBar();
             updateTimeDisplay();
         });
 
         video.addEventListener('timeupdate', () => {
-            if (!isSeeking && Number.isFinite(video.duration)) {
-                seekBar.value = video.currentTime;
-            }
+            updateSeekBar();
             updateTimeDisplay();
         });
 
@@ -267,14 +277,14 @@ function initVideoPlayers() {
 
         const endSeeking = () => {
             isSeeking = false;
-            video.currentTime = Number(seekBar.value);
+            seekToPercent(Number(seekBar.value));
             updateTimeDisplay();
         };
 
         seekBar.addEventListener('mousedown', startSeeking);
         seekBar.addEventListener('touchstart', startSeeking, { passive: true });
         seekBar.addEventListener('input', () => {
-            video.currentTime = Number(seekBar.value);
+            seekToPercent(Number(seekBar.value));
             updateTimeDisplay();
         });
         seekBar.addEventListener('change', endSeeking);

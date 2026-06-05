@@ -876,9 +876,11 @@ a:hover {
 .player-seek {
     flex: 1;
     min-width: 0;
-    height: 6px;
+    height: 24px;
     accent-color: var(--accent);
     cursor: pointer;
+    pointer-events: auto;
+    touch-action: manipulation;
 }
 
 .player-time {
