@@ -11,7 +11,6 @@ document.addEventListener('DOMContentLoaded', function() {
     initPublicationTabs();
     initScrollAnimations();
     initScrollIndicator();
-    initVideoPlayers();
 });
 
 /**
@@ -195,104 +194,6 @@ function initScrollAnimations() {
         const cards = document.querySelectorAll(selector);
         cards.forEach((card, index) => {
             card.style.transitionDelay = `${index * 0.1}s`;
-        });
-    });
-}
-
-/**
- * Custom video players with working seek bars
- */
-function initVideoPlayers() {
-    const players = document.querySelectorAll('.video-player');
-
-    if (players.length === 0) return;
-
-    const formatTime = (seconds) => {
-        if (!Number.isFinite(seconds)) return '0:00';
-        const mins = Math.floor(seconds / 60);
-        const secs = Math.floor(seconds % 60).toString().padStart(2, '0');
-        return `${mins}:${secs}`;
-    };
-
-    players.forEach((player) => {
-        const video = player.querySelector('video');
-        const playBtn = player.querySelector('.player-btn');
-        const seekBar = player.querySelector('.player-seek');
-        const timeDisplay = player.querySelector('.player-time');
-        let isSeeking = false;
-
-        if (!video || !playBtn || !seekBar || !timeDisplay) return;
-
-        const updateTimeDisplay = () => {
-            timeDisplay.textContent = `${formatTime(video.currentTime)} / ${formatTime(video.duration)}`;
-        };
-
-        const setPlayState = (playing) => {
-            playBtn.textContent = playing ? '⏸' : '▶';
-            playBtn.setAttribute('aria-label', playing ? 'Pause' : 'Play');
-        };
-
-        const seekToPercent = (percent) => {
-            if (Number.isFinite(video.duration) && video.duration > 0) {
-                video.currentTime = (percent / 100) * video.duration;
-            }
-        };
-
-        const updateSeekBar = () => {
-            if (!isSeeking && Number.isFinite(video.duration) && video.duration > 0) {
-                seekBar.value = (video.currentTime / video.duration) * 100;
-            }
-        };
-
-        video.addEventListener('loadedmetadata', () => {
-            updateSeekBar();
-            updateTimeDisplay();
-        });
-
-        video.addEventListener('durationchange', () => {
-            updateSeekBar();
-            updateTimeDisplay();
-        });
-
-        video.addEventListener('timeupdate', () => {
-            updateSeekBar();
-            updateTimeDisplay();
-        });
-
-        playBtn.addEventListener('click', () => {
-            if (video.paused) {
-                video.play();
-            } else {
-                video.pause();
-            }
-        });
-
-        video.addEventListener('play', () => setPlayState(true));
-        video.addEventListener('pause', () => setPlayState(false));
-        video.addEventListener('ended', () => setPlayState(false));
-
-        const startSeeking = () => {
-            isSeeking = true;
-        };
-
-        const endSeeking = () => {
-            isSeeking = false;
-            seekToPercent(Number(seekBar.value));
-            updateTimeDisplay();
-        };
-
-        seekBar.addEventListener('mousedown', startSeeking);
-        seekBar.addEventListener('touchstart', startSeeking, { passive: true });
-        seekBar.addEventListener('input', () => {
-            seekToPercent(Number(seekBar.value));
-            updateTimeDisplay();
-        });
-        seekBar.addEventListener('change', endSeeking);
-        window.addEventListener('mouseup', () => {
-            if (isSeeking) endSeeking();
-        });
-        window.addEventListener('touchend', () => {
-            if (isSeeking) endSeeking();
         });
     });
 }
