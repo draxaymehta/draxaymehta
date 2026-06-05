@@ -788,9 +788,9 @@ a:hover {
 /* Research Labs */
 .labs-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.5rem;
-    max-width: 900px;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    max-width: 1000px;
     margin: 0 auto;
 }
 
@@ -812,9 +812,36 @@ a:hover {
     margin-bottom: 0.5rem;
 }
 
-.lab-card p {
-    margin-bottom: 0;
+.lab-card > p {
+    margin-bottom: 1.5rem;
     color: var(--text-muted);
+}
+
+.lab-videos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.25rem;
+}
+
+.video-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.video-item video {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    border-radius: 4px;
+    background: var(--primary-dark);
+    border: 1px solid var(--border);
+}
+
+.video-caption {
+    font-size: 0.8125rem;
+    color: var(--text-muted);
+    text-align: center;
 }
 
 .contribution-list {

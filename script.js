@@ -152,7 +152,7 @@ function initScrollAnimations() {
     // Add fade-in class to animatable elements
     const animatableElements = document.querySelectorAll(
         '.stat-card, .timeline-item, .experience-card, .leadership-card, ' +
-        '.project-card, .course-card, .award-card, .talk-item, .outreach-category'
+        '.project-card, .course-card, .award-card, .talk-item, .outreach-category, .lab-card'
     );
 
     animatableElements.forEach(el => {
