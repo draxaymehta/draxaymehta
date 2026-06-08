@@ -480,6 +480,12 @@ a:hover {
     margin-bottom: 1.5rem;
 }
 
+.about-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
 .stats-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -521,12 +527,12 @@ a:hover {
 
 /* Research Metrics in About Section */
 .research-metrics {
-    display: flex;
-    gap: 1.5rem;
-    margin-top: 2rem;
-    padding-top: 1.5rem;
-    border-top: 1px solid var(--border);
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-top: 0;
+    padding-top: 0;
+    border-top: none;
 }
 
 .metric-link {
@@ -534,17 +540,19 @@ a:hover {
     flex-direction: column;
     align-items: center;
     text-align: center;
-    padding: 1rem 1.5rem;
+    padding: 1.5rem 1rem;
     background: var(--bg-cream);
     border-radius: 4px;
-    transition: all var(--transition-fast);
+    border: 1px solid var(--border);
+    transition: all var(--transition-medium);
     text-decoration: none;
     color: inherit;
 }
 
 .metric-link:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transform: translateY(-4px);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+    border-color: var(--accent);
 }
 
 .metric-icon {
@@ -1936,7 +1944,7 @@ a:hover {
     }
 
     .research-metrics {
-        flex-direction: column;
+        grid-template-columns: 1fr;
     }
 
     .metric-link {
