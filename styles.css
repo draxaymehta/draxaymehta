@@ -409,8 +409,16 @@ a:hover {
 .hero-institution {
     font-size: 1rem;
     opacity: 0.85;
+    margin-bottom: 0.5rem;
+    font-weight: 300;
+}
+
+.hero-subtitle {
+    font-size: 0.9rem;
+    opacity: 0.75;
     margin-bottom: 1rem;
     font-weight: 300;
+    font-style: italic;
 }
 
 .hero-tagline {
@@ -1087,6 +1095,68 @@ a:hover {
     margin-top: 0.25rem;
 }
 
+.publications-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 300px;
+    gap: 2.5rem;
+    align-items: start;
+}
+
+.publications-main {
+    min-width: 0;
+}
+
+.book-covers-sidebar {
+    position: sticky;
+    top: 6rem;
+    padding: 1.5rem;
+    background: var(--bg-cream);
+    border-radius: 8px;
+    border: 1px solid var(--border);
+}
+
+.book-covers-title {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--primary);
+    margin-bottom: 1.25rem;
+    text-align: center;
+}
+
+.book-covers-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+.book-cover-card {
+    margin: 0;
+    text-align: center;
+}
+
+.book-cover-card img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+    border-radius: 4px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.book-cover-card:hover img {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
+}
+
+.book-cover-card figcaption {
+    margin-top: 0.5rem;
+    font-size: 0.6875rem;
+    line-height: 1.35;
+    color: var(--text-muted);
+}
+
 .publication-tabs {
     display: flex;
     justify-content: center;
@@ -1126,8 +1196,8 @@ a:hover {
 }
 
 .publication-list {
-    max-width: 900px;
-    margin: 0 auto;
+    max-width: none;
+    margin: 0;
 }
 
 .publication-item {
@@ -1890,6 +1960,20 @@ a:hover {
         gap: 0.5rem;
     }
 
+    .publications-layout {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .book-covers-sidebar {
+        position: static;
+        order: -1;
+    }
+
+    .book-covers-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
     .pub-year {
         width: auto;
     }
@@ -1937,6 +2021,10 @@ a:hover {
         border-bottom: 1px solid var(--border);
         padding: 1rem 0;
         width: 100%;
+    }
+
+    .book-covers-grid {
+        grid-template-columns: repeat(2, 1fr);
     }
 
     .pub-stat:last-child {
